@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-blue: #007aff;
+  --color-brand-purple: #af52de;
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #1c1c1e;
+  --color-bg-tertiary: #2c2c2e;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #8e8e93;
+  --color-border: #38383a;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-primary;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-tertiary rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/10;
+  }
+
+  .apple-card {
+    @apply bg-bg-secondary rounded-2xl overflow-hidden border border-border transition-all duration-300 hover:scale-[1.02] hover:border-text-secondary/50;
+  }
+
+  .apple-button {
+    @apply px-6 py-3 bg-white text-black font-semibold rounded-full transition-all duration-200 hover:bg-white/90 active:scale-95 disabled:opacity-50;
+  }
+
+  .apple-button-secondary {
+    @apply px-6 py-3 bg-bg-tertiary text-white font-semibold rounded-full transition-all duration-200 hover:bg-bg-tertiary/80 active:scale-95;
+  }
+}

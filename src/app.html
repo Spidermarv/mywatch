@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+
+    <!-- Monetization: Pop-under Trigger -->
+    <script>
+      window.triggerPopUnder = function() {
+        console.log('Pop-under triggered');
+        // Actual PropellerAds/Monetag script would go here
+        // or a dynamic script injection
+        const script = document.createElement('script');
+        script.src = "//vignette.com/your-ad-zone-id.js"; // Placeholder
+        script.async = true;
+        document.body.appendChild(script);
+      };
+
+      // Anti-Adblock Strategy: Check if ads are blocked and show recovery message or use proxy
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const testAd = document.createElement('div');
+          testAd.innerHTML = '&nbsp;';
+          testAd.className = 'adsbox';
+          document.body.appendChild(testAd);
+          window.setTimeout(() => {
+            if (testAd.offsetHeight === 0) {
+              console.warn('Adblock detected - Activating recovery mode');
+              // Logic to recover ads or show message
+            }
+            testAd.remove();
+          }, 100);
+        }, 1000);
+      });
+    </script>
+	</body>
+</html>
