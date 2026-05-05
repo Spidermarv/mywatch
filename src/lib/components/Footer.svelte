@@ -40,9 +40,9 @@
       <div>
         <h3 class="text-sm font-semibold mb-6 uppercase tracking-wider">Community</h3>
         <ul class="space-y-4">
-          <li><a href="#" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Telegram</a></li>
-          <li><a href="#" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Discord</a></li>
-          <li><a href="#" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Twitter</a></li>
+          <li><a href="https://t.me/hurahwatch" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Telegram</a></li>
+          <li><a href="https://discord.gg/hurahwatch" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Discord</a></li>
+          <li><a href="https://twitter.com/hurahwatch" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Twitter</a></li>
         </ul>
       </div>
     </div>

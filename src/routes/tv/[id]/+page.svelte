@@ -5,15 +5,17 @@
   import { generateTVJsonLd } from '$lib/utils/seo';
 
   let { data } = $props();
-  const { series, credits, similar } = data;
-  const jsonLd = generateTVJsonLd(series);
+  const series = $derived(data.series);
+  const credits = $derived(data.credits);
+  const similar = $derived(data.similar);
+  const jsonLd = $derived(generateTVJsonLd(series));
 
   let selectedSeason = $state(1);
   let selectedEpisode = $state(1);
   let showSeasonDropdown = $state(false);
 
-  const year = new Date(series.first_air_date).getFullYear();
-  const rating = series.vote_average.toFixed(1);
+  const year = $derived(new Date(series.first_air_date).getFullYear());
+  const rating = $derived(series.vote_average.toFixed(1));
   
   const currentSeasonData = $derived(series.seasons.find((s: any) => s.season_number === selectedSeason) || series.seasons[0]);
 </script>

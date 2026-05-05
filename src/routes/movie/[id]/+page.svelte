@@ -5,12 +5,14 @@
   import { generateMovieJsonLd } from '$lib/utils/seo';
 
   let { data } = $props();
-  const { movie, credits, similar } = data;
-  const jsonLd = generateMovieJsonLd(movie);
+  const movie = $derived(data.movie);
+  const credits = $derived(data.credits);
+  const similar = $derived(data.similar);
+  const jsonLd = $derived(generateMovieJsonLd(movie));
 
-  const year = new Date(movie.release_date).getFullYear();
-  const rating = movie.vote_average.toFixed(1);
-  const runtime = `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`;
+  const year = $derived(new Date(movie.release_date).getFullYear());
+  const rating = $derived(movie.vote_average.toFixed(1));
+  const runtime = $derived(`${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`);
 </script>
 
 <svelte:head>

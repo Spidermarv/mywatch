@@ -4,7 +4,7 @@
 
   let { tmdbId, type = 'movie', season = 1, episode = 1 } = $props();
 
-  let activeServer = $state('vidsrc');
+  let activeServer = $state('2embed');
   let isLoading = $state(true);
   let hasInteracted = $state(false);
   let loadingStep = $state(0);
@@ -19,8 +19,8 @@
   ];
 
   const servers = [
-    { id: 'vidsrc', name: 'Server 1 (High Quality)', url: (id: string) => type === 'movie' ? `https://vidsrc.to/embed/movie/${id}` : `https://vidsrc.to/embed/tv/${id}/${season}/${episode}` },
-    { id: '2embed', name: 'Server 2 (Fast)', url: (id: string) => type === 'movie' ? `https://www.2embed.cc/embed/${id}` : `https://www.2embed.cc/embedtv/${id}&s=${season}&e=${episode}` },
+    { id: '2embed', name: 'Server 1 (HD)', url: (id: string) => type === 'movie' ? `https://www.2embed.online/2embed.php?id=${id}` : `https://www.2embed.online/tv-2embed.php?id=${id}&season=${season}&episode=${episode}` },
+    { id: 'vidsrc', name: 'Server 2 (Alt)', url: (id: string) => type === 'movie' ? `https://vidsrc.to/embed/movie/${id}` : `https://vidsrc.to/embed/tv/${id}/${season}/${episode}` },
     { id: 'superembed', name: 'Server 3 (Fallback)', url: (id: string) => type === 'movie' ? `https://multiembed.mov/?video_id=${id}&tmdb=1` : `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season}&e=${episode}` }
   ];
 

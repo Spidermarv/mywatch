@@ -7,6 +7,7 @@
   let searchQuery = $state('');
   let results = $state<any[]>([]);
   let isSearching = $state(false);
+  let inputEl = $state<HTMLInputElement | null>(null);
 
   async function handleSearch() {
     if (searchQuery.length < 2) {
@@ -43,6 +44,13 @@
     window.addEventListener('keydown', handleKeydown);
     return () => window.removeEventListener('keydown', handleKeydown);
   });
+
+  $effect(() => {
+    if (isOpen && inputEl) {
+      // Defer focus to after transition renders
+      setTimeout(() => inputEl?.focus(), 50);
+    }
+  });
 </script>
 
 {#if isOpen}
@@ -50,10 +58,12 @@
     class="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-6"
     transition:fade={{ duration: 200 }}
   >
-    <div 
-      class="absolute inset-0 bg-black/60 backdrop-blur-xl"
+    <button
+      type="button"
+      aria-label="Close search"
+      class="absolute inset-0 bg-black/60 backdrop-blur-xl w-full h-full cursor-default"
       onclick={() => isOpen = false}
-    ></div>
+    ></button>
 
     <div 
       class="w-full max-w-2xl bg-bg-secondary border border-border rounded-3xl shadow-2xl overflow-hidden relative"
@@ -62,12 +72,12 @@
       <div class="p-6 flex items-center gap-4 border-b border-border">
         <SearchIcon class="w-6 h-6 text-text-secondary" />
         <input 
+          bind:this={inputEl}
           type="text"
           bind:value={searchQuery}
           oninput={debouncedSearch}
           placeholder="Search movies, series, or actors..."
           class="flex-grow bg-transparent border-none text-xl font-medium focus:ring-0 placeholder:text-text-secondary"
-          autoFocus
         />
         <button 
           onclick={() => isOpen = false}

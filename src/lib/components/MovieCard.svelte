@@ -3,12 +3,12 @@
   
   let { media } = $props();
   
-  const title = media.title || media.name;
-  const releaseDate = media.release_date || media.first_air_date;
-  const year = releaseDate ? new Date(releaseDate).getFullYear() : 'N/A';
-  const poster = media.poster_path 
+  const title = $derived(media.title || media.name);
+  const releaseDate = $derived(media.release_date || media.first_air_date);
+  const year = $derived(releaseDate ? new Date(releaseDate).getFullYear() : 'N/A');
+  const poster = $derived(media.poster_path 
     ? `https://image.tmdb.org/t/p/w500${media.poster_path}` 
-    : '/placeholder-poster.jpg';
+    : '/placeholder-poster.jpg');
 </script>
 
 <a 
